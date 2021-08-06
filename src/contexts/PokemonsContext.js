@@ -12,16 +12,19 @@ export function PokemonsProvider({ children }) {
 
     useEffect(() => {
         updatePokemons();
+        // eslint-disable-next-line
     }, [token?.token]);
 
     function updatePokemons() {
-        axios.get(`${process.env.REACT_APP_API_BASE_URL}/pokemons`, {
-            headers: {
-                Authorization: `Bearer ${token?.token}`
-            }
-        }).then(response => {
-            setPokemons(response.data);
-        });
+        axios
+            .get(`${process.env.REACT_APP_API_BASE_URL}/pokemons`, {
+                headers: {
+                    Authorization: `Bearer ${token?.token}`,
+                },
+            })
+            .then((response) => {
+                setPokemons(response.data);
+            });
     }
 
     return (
